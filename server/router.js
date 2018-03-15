@@ -3,9 +3,9 @@ const db = require('../db/database.js');
 
 const router = express.Router();
 
-router.get('/:id', (req, res) => {
+router.get('/:name', (req, res) => {
   res.set({ 'Access-Control-Allow-Origin' : '*' });
-  db.find(req.params, (err, data) => {
+  db.findOne($text: {$search: req.params.name}, (err, data) => {
     if (err) {
       res.sendStatus(404);
     } else {

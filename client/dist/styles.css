@@ -8,10 +8,6 @@
   background: #f7f7f7;
 }
 
-#main {
-  background: #f7f7f7;
-}
-
 .bannerImg {
   height: 150px;
   width: 240px;
@@ -20,10 +16,11 @@
 #app {
   background: #f7f7f7;
 }
+
 .main {
   width: 75%;
-  position: relative;
   left: 100px;
+  float: left;
 }
 
 .line {
@@ -65,7 +62,7 @@
   height: 140px;
   width: 250px;
   position: relative;
-  left: 97px;
+  left: 100px;
   bottom: 140px;
 }
 .side {
@@ -116,11 +113,11 @@
 }
 
 .photoOne {
-  height: 140px;
+  height: 160px;
   width: 250px;
   position: relative;
-  left: 97px;
-  bottom: 80px;
+  left: 100px;
+  bottom: 140px;
 }
 
 .clockIcon {
@@ -161,25 +158,21 @@
 
 .description {
   font-family: Arial;
+  overflow: hidden;
 }
 
 .sidebar {
-  width: 15%;
-  bottom: 51em;
-  left: 850px;
-  position: relative;
+  width: 17%;
   box-sizing: border-box;
   border: 2px solid white;
   border-radius: 10px;
   background: #fff;
   box-shadow: 0 2px 8px #c1bfbf;
+  margin-left: auto;
 }
 
 .grid {
-  content: "";
-  display: table;
-  clear: both;
-  background: #f7f7f7;
+  height: auto;
   margin-left:auto;
   margin-right:auto;
   width: 960px;

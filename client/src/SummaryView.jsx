@@ -8,14 +8,13 @@ class SummaryView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: this.props.id,
-      name: '',
+      name: this.props.name,
       description: '',
       hours: '',
       phone: '',
       price: '',
       style: '',
-      banner: '',
+      banner: [],
       photo: [],
     };
   }
@@ -25,19 +24,19 @@ class SummaryView extends React.Component {
   }
 
   fetch() {
-    ajax.get(this.state.id, (err, data) => {
+    ajax.get(this.state.name, (err, data) => {
       if (err) {
         console.error(err);
       } else {
         this.setState({
-          name: data[0].name,
-          description: data[0].about.description,
-          hours: data[0].about.hours,
-          phone: data[0].about.phone,
-          price: data[0].about.price,
-          style: data[0].about.style,
-          banner: data[0].banner,
-          photo: data[0].photo,
+          name: data.name,
+          description: data.about.description,
+          hours: data.about.hours,
+          phone: data.about.phone,
+          price: data.about.price,
+          style: data.about.style,
+          banner: data.banner,
+          photo: data.photo,
         });
       }
     });
