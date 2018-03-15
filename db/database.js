@@ -1,8 +1,11 @@
+// const faker = require('faker');
 const mongoose = require('mongoose');
-const sampleData = require('../data/sampleData.js');
+// mongoose.Promise = require('bluebird');
 
+const connection = 'mongodb://localhost/restaurant' || `mongodb://${process.env.DB_USER}:${process.env.DB_PW}@ds259778.mlab.com:59778/abouts`;
 
-mongoose.connect("mongodb://localhost/restaurant" || `mongodb://${process.env.DB_USER}:${process.env.DB_PW}@ds259778.mlab.com:59778/abouts`);
+console.log('connection', connection);
+mongoose.connect(connection);
 
 const aboutSchema = mongoose.Schema({
   id: {
@@ -12,8 +15,8 @@ const aboutSchema = mongoose.Schema({
   name: String,
   about: {
     description: String,
-    hours: String,
-    price: String,
+    hours: Number,
+    price: Number,
     style: String,
     phone: String,
   },
@@ -24,23 +27,28 @@ const aboutSchema = mongoose.Schema({
 
 const About = mongoose.model('About', aboutSchema);
 
-let count = 0;
+// const insert = (i, max) => {
+//   if (i === max) {
+//     mongoose.disconnect();
+//   }
+//   const data = {
+//     id: i,
+//     name: faker.Company.companyName() + faker.Name.lastName(),
+//     about: {
+//       description: faker.Lorem.sentences(),
+//       hours: faker.Date.recent(),
+//       price: faker.Helpers.randomNumber(100),
+//       style: faker.Lorem.words(),
+//       phone: faker.PhoneNumber.phoneNumber(),
+//     },
+//     banner: [faker.Image.nightlife(), faker.Image.nightlife(), faker.Image.nightlife(), faker.Image.nightlife()],
+//     photo: [faker.Image.food(), faker.Image.food(), faker.Image.food()],
+//   };
 
-sampleData.forEach((data) => {
-
-  const about = new About(data);
-
-  about.save((err, res) => {
-    if (err) {
-      // console.log(err, 'errrrrr');
-    } else {
-      count += 1;
-      if (count === 119) {
-        mongoose.disconnect();
-      }
-    }
-  });
-});
+//   About.create(data).then(() => {
+//     insert(i+1, max);
+//   }).catch(err => console.error(err));
+// };
 
 const find = (obj, cb) => {
   About.find(obj, (err, about) => {
@@ -60,7 +68,7 @@ const findOne = (obj, cb) => {
       cb(null, results);
     }
   });
-}
+};
 
 module.exports.find = find;
 module.exports.findOne = findOne;
