@@ -11,7 +11,7 @@ router.get('/:id', (req, res) => {
     } else {
       res.send(data);
     }
-  })
+  });
 });
 
 module.exports = router;

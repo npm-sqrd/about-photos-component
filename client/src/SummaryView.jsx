@@ -8,7 +8,7 @@ class SummaryView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: props.id,
+      id: this.props.id,
       name: '',
       description: '',
       hours: '',
@@ -17,7 +17,7 @@ class SummaryView extends React.Component {
       style: '',
       banner: '',
       photo: [],
-    }
+    };
   }
 
   componentDidMount() {
@@ -27,7 +27,7 @@ class SummaryView extends React.Component {
   fetch() {
     ajax.get(this.state.id, (err, data) => {
       if (err) {
-        throw err;
+        console.error(err);
       } else {
         this.setState({
           name: data[0].name,
@@ -37,8 +37,8 @@ class SummaryView extends React.Component {
           price: data[0].about.price,
           style: data[0].about.style,
           banner: data[0].banner,
-          photo: data[0].photo
-        })
+          photo: data[0].photo,
+        });
       }
     });
   }

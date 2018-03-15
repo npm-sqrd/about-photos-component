@@ -1,7 +1,7 @@
 node_modules/
 
 .env
-
+sampleDatas
 client/dist/bundle.js
 client/dist/bundle-prod.js
 
