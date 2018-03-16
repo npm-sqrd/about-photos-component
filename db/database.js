@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 
 const connection = 'mongodb://localhost/restaurant' || `mongodb://${process.env.DB_USER}:${process.env.DB_PW}@ds259778.mlab.com:59778/abouts`;
 
-console.log('connection', connection);
 mongoose.connect(connection);
 
 const aboutSchema = mongoose.Schema({
@@ -38,7 +37,7 @@ const find = (obj, cb) => {
 };
 
 const findOne = (obj, cb) => {
-  About.findOne(obj, (err, results) => {
+  About.findOne(obj).lean().exec((err, results) => {
     if (err) {
       cb(err, null);
     } else {
