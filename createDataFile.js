@@ -1,7 +1,31 @@
 const fs = require('fs');
+const mongoose = require('mongoose');
 const faker = require('faker');
 
 const writeStream = fs.createWriteStream('sampleDatas/data.json');
+
+const connection = 'mongodb://localhost/restaurant' || `mongodb://${process.env.DB_USER}:${process.env.DB_PW}@ds259778.mlab.com:59778/abouts`;
+
+mongoose.connect(connection);
+
+const aboutSchema = mongoose.Schema({
+  id: {
+    type: Number,
+    unique: true,
+  },
+  name: String,
+  about: {
+    description: String,
+    hours: String,
+    price: Number,
+    style: String,
+    phone: String,
+  },
+  banner: [],
+  photo: [],
+}).index({ name: 'text' });
+
+const About = mongoose.model('About', aboutSchema);
 
 function createDataFile(start, end, stream, encoding, callback) {
   let i = start;
@@ -27,6 +51,7 @@ function createDataFile(start, end, stream, encoding, callback) {
       }
       if (i === end) {
         stream.write(JSON.stringify(data)+'\n', encoding, callback);
+        mongoose.disconnect();
       } else {
         flag = stream.write(JSON.stringify(data)+'\n', encoding);
       }
@@ -38,5 +63,5 @@ function createDataFile(start, end, stream, encoding, callback) {
   write();
 }
 
-createDataFile(20000000, 10000000, writeStream, 'utf8', () => console.log('done'));
+createDataFile(20000000, 9999999, writeStream, 'utf8', () => console.log('done'));
 //mongoimport --db restaurant --collection abouts --file sampleDatas/data.json

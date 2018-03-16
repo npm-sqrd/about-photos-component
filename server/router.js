@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/:name', (req, res) => {
   res.set({ 'Access-Control-Allow-Origin' : '*' });
-  db.findOne($text: {$search: req.params.name}, (err, data) => {
+  db.findOne({ $text: { $search: req.params.name } }, (err, data) => {
     if (err) {
       res.sendStatus(404);
     } else {
