@@ -21,6 +21,8 @@ CREATE TABLE about (
   phone text NOT NULL
 );
 
+image
+type: banner photo
 
 
 -- psql postgres -U <USERNAME> < database/schema.sql

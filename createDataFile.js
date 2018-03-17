@@ -23,7 +23,7 @@ const aboutSchema = mongoose.Schema({
   },
   banner: [],
   photo: [],
-}).index({ name: 'text' });
+}).index({ name: 1 });
 
 const About = mongoose.model('About', aboutSchema);
 
@@ -63,5 +63,5 @@ function createDataFile(start, end, stream, encoding, callback) {
   write();
 }
 
-createDataFile(20000000, 9999999, writeStream, 'utf8', () => console.log('done'));
+createDataFile(20000000, 10000000, writeStream, 'utf8', () => console.log('done'));
 //mongoimport --db restaurant --collection abouts --file sampleDatas/data.json

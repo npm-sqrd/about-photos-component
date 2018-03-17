@@ -22,7 +22,7 @@ const aboutSchema = mongoose.Schema({
   },
   banner: [],
   photo: [],
-}).index({ name: 'text' });
+}).index({ name: 1 });
 
 const About = mongoose.model('About', aboutSchema);
 
@@ -37,7 +37,7 @@ const find = (obj, cb) => {
 };
 
 const findOne = (obj, cb) => {
-  About.findOne(obj).lean().exec((err, results) => {
+  About.find(obj).lean().exec((err, results) => {
     if (err) {
       cb(err, null);
     } else {
