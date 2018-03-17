@@ -28,15 +28,16 @@ class SummaryView extends React.Component {
       if (err) {
         console.error(err);
       } else {
+        console.log(data[0]);
         this.setState({
-          name: data.name,
-          description: data.about.description,
-          hours: data.about.hours,
-          phone: data.about.phone,
-          price: data.about.price,
-          style: data.about.style,
-          banner: data.banner,
-          photo: data.photo,
+          name: data[0].name,
+          description: data[0].about.description,
+          hours: data[0].about.hours,
+          phone: data[0].about.phone,
+          price: data[0].about.price,
+          style: data[0].about.style,
+          banner: data[0].banner,
+          photo: data[0].photo,
         });
       }
     });
