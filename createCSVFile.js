@@ -2,23 +2,7 @@ const fs = require('fs');
 const faker = require('faker');
 const Promise = require('bluebird');
 
-
-      // const data = {
-      //   id: i,
-      //   name: faker.name.lastName() + i,
-      //   about: {
-      //     description: faker.lorem.paragraph(),
-      //     hours: faker.date.weekday(),
-      //     price: faker.random.number(100),
-      //     style: faker.lorem.word(),
-      //     phone: faker.phone.phoneNumber(),
-      //   },
-      //   banner: [faker.image.avatar(), faker.image.avatar(), faker.image.avatar(), faker.image.avatar()],
-      //   photo: [faker.internet.avatar(), faker.internet.avatar(), faker.internet.avatar()],
-      // };
-
 function createCSVFile(tableName, start, end, writeStream, encoding, callback) {
-  // const writeStream = fs.createWriteStream(`sampleDatas/${tableName}.csv`);
 
   let i = start;
   const write = () => {
