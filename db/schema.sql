@@ -4,16 +4,8 @@ CREATE DATABASE restaurants;
 
 \c restaurants;
 
-CREATE TABLE restaurant (
-  id PRIMARY KEY,
-  name text NOT NULL,
-  about_id int NOT NULL REFERENCES about (id),
-  banner text[4] NOT NULL,
-  photo text[3] NOT NULL
-);
-
 CREATE TABLE about (
-  id PRIMARY KEY,
+  id bigint PRIMARY KEY,
   description text NOT NULL,
   hour text NOT NULL,
   price int NOT NULL,
@@ -21,8 +13,37 @@ CREATE TABLE about (
   phone text NOT NULL
 );
 
-image
-type: banner photo
+\copy about from 'sampleDatas/about.csv' DELIMITER ',';
 
+CREATE TABLE banner (
+  id bigint PRIMARY KEY,
+  bannerImg01 text NOT NULL,
+  bannerImg02 text NOT NULL,
+  bannerImg03 text NOT NULL,
+  bannerImg04 text NOT NULL
+);
 
--- psql postgres -U <USERNAME> < database/schema.sql
+\copy banner from 'sampleDatas/banner.csv' DELIMITER ',';
+
+CREATE TABLE photo (
+  id bigint PRIMARY KEY,
+  photoImg01 text NOT NULL,
+  photoImg02 text NOT NULL,
+  photoImg03 text NOT NULL
+);
+
+\copy photo from 'sampleDatas/photo.csv' DELIMITER ',';
+
+CREATE TABLE restaurant (
+  id bigint PRIMARY KEY,
+  name text NOT NULL,
+  about_id int NOT NULL REFERENCES about (id),
+  banner_id int NOT NULL REFERENCES banner (id),
+  photo_id int NOT NULL REFERENCES photo (id)
+);
+
+\copy restaurant from 'sampleDatas/restaurant.csv' DELIMITER ',';
+
+CREATE INDEX on restaurant (name);
+
+-- psql restaurants < db/schema.sql

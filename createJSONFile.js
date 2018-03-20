@@ -27,7 +27,11 @@ const aboutSchema = mongoose.Schema({
 
 const About = mongoose.model('About', aboutSchema);
 
-function createDataFile(start, end, stream, encoding, callback) {
+About.init().then(() => {
+  mongoose.disconnect();
+});
+
+function createJSONFile(start, end, stream, encoding, callback) {
   let i = start;
   const write = () => {
     let flag = true;
@@ -51,7 +55,6 @@ function createDataFile(start, end, stream, encoding, callback) {
       }
       if (i === end) {
         stream.write(JSON.stringify(data)+'\n', encoding, callback);
-        mongoose.disconnect();
       } else {
         flag = stream.write(JSON.stringify(data)+'\n', encoding);
       }
@@ -63,5 +66,5 @@ function createDataFile(start, end, stream, encoding, callback) {
   write();
 }
 
-createDataFile(20000000, 10000000, writeStream, 'utf8', () => console.log('done'));
+createJSONFile(20000000, 10000000, writeStream, 'utf8', () => console.log('done'));
 //mongoimport --db restaurant --collection abouts --file sampleDatas/data.json
