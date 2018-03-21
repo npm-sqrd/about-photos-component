@@ -17,3 +17,5 @@ newrelic_agent.log
 
 hello.yml
 *.txt
+
+dump.rdb
