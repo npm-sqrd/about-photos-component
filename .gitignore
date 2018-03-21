@@ -11,3 +11,9 @@ client/dist/bundle-prod.js
 !.elasticbeanstalk/*.global.yml
 
 *Plot.html
+
+newrelic.js
+newrelic_agent.log
+
+hello.yml
+*.txt

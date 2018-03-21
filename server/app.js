@@ -1,3 +1,4 @@
+require('newrelic');
 const path = require('path');
 const morgan = require('morgan');
 const express = require('express');
