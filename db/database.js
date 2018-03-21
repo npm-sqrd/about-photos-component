@@ -29,10 +29,8 @@ const findRestaurant = (obj, cb) => {
   const key = obj.name;
   redisClient.get(key, (error, data) => {
     if (error) {
-      console.log('redis error');
       cb(error, null);
     } else if (data !== null) {
-      console.log('data != null', data);
       cb(null, data);
     } else {
       About.find(obj).lean().exec((err, about) => {
@@ -40,7 +38,6 @@ const findRestaurant = (obj, cb) => {
           cb(err, null);
         } else {
           const value = JSON.stringify(about);
-          console.log('value', value);
           redisClient.setex(key, 10, value);
           cb(null, about);
         }
