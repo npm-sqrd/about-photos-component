@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/:name', (req, res) => {
   // res.set({ 'Access-Control-Allow-Origin' : '*' });
-  db.find(req.params, (err, data) => {
+  db.findRestaurant(req.params, (err, data) => {
     if (err) {
       res.sendStatus(404);
     } else {
