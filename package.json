@@ -37,6 +37,7 @@
     "jquery": "^3.3.1",
     "mongodb-memory-server": "^1.7.0",
     "mongoose": "^5.0.6",
+    "newrelic": "^3.2.0",
     "pg": "^7.4.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
