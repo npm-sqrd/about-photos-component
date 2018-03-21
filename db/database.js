@@ -1,5 +1,6 @@
 
 const mongoose = require('mongoose');
+const redisClient = require('./redisClient');
 
 const connection = 'mongodb://localhost/restaurant' || `mongodb://${process.env.DB_USER}:${process.env.DB_PW}@ds259778.mlab.com:59778/abouts`;
 
@@ -25,11 +26,25 @@ const aboutSchema = mongoose.Schema({
 const About = mongoose.model('About', aboutSchema);
 
 const findRestaurant = (obj, cb) => {
-  About.find(obj).lean().exec((err, about) => {
-    if (err) {
-      cb(err, null);
+  const key = obj.name;
+  redisClient.get(key, (error, data) => {
+    if (error) {
+      console.log('redis error');
+      cb(error, null);
+    } else if (data !== null) {
+      console.log('data != null', data);
+      cb(null, data);
     } else {
-      cb(null, about);
+      About.find(obj).lean().exec((err, about) => {
+        if (err) {
+          cb(err, null);
+        } else {
+          const value = JSON.stringify(about);
+          console.log('value', value);
+          redisClient.setex(key, 10, value);
+          cb(null, about);
+        }
+      });
     }
   });
 };
