@@ -24,7 +24,7 @@ const aboutSchema = mongoose.Schema({
 
 const About = mongoose.model('About', aboutSchema);
 
-const find = (obj, cb) => {
+const findRestaurant = (obj, cb) => {
   About.find(obj).lean().exec((err, about) => {
     if (err) {
       cb(err, null);
@@ -44,5 +44,5 @@ const findOne = (obj, cb) => {
   });
 };
 
-module.exports.find = find;
+module.exports.findRestaurant = findRestaurant;
 module.exports.findOne = findOne;

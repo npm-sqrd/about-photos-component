@@ -26,7 +26,7 @@ http.createServer((req, res) => {
     jsStream.pipe(res);
   } else if (req.url.match(/\/restaurants\/Restaurant%20\d{8}$/)) {
     const id = req.url.slice(26);
-    db.find({ name: `Restaurant ${id}` }, (err, data) => {
+    db.findRestaurant({ name: `Restaurant ${id}` }, (err, data) => {
       if (err) {
         res.writeHead(500);
         res.end();
