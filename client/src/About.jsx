@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import './styles.css';
 
 const About = ({ description, name, photo }) => {
   return (
