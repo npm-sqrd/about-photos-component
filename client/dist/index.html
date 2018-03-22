@@ -7,13 +7,12 @@
     <div id="main" />
     <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="bundle.js" type="text/javascript"></script>
     <script>
       const num = window.location.search.slice(4) || `Restaurant ${Math.floor((Math.random() * 10000001)) + 10000000}`;
       ReactDOM.render(
-          React.createElement(SummaryView, { name: num }, null),
-          document.getElementById('main')
+        React.createElement(SummaryView, { name: num }, null),
+        document.getElementById('main')
         );
     </script>
   </body>
