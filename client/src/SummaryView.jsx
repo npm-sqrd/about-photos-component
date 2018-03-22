@@ -3,6 +3,7 @@ import ajax from './ajax.js';
 import About from './About.jsx';
 import SideBar from './SideBar.jsx';
 import Banner from './Banner.jsx';
+import './styles.css';
 
 class SummaryView extends React.Component {
   constructor(props) {
