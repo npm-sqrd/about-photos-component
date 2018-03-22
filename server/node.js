@@ -7,15 +7,9 @@ const db = require('../db/database.js');
 
 http.createServer((req, res) => {
   if (req.url === '/') {
-    fs.readFileAsync(path.join(__dirname, '../client/dist/index.html'), 'utf8')
-      .then((data) => {
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.end(data);
-      })
-      .catch(() => {
-        res.writeHead(400);
-        res.end();
-      });
+    const htmlStream = fs.createReadStream(path.join(__dirname, '../client/dist/index.html'), 'utf8');
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    htmlStream.pipe(res);
   } else if (req.url.match('.css')) {
     const cssStream = fs.createReadStream(path.join(__dirname, '../client/dist/styles.css'), 'utf8');
     res.writeHead(200, { 'Content-Type': 'text/css' });
