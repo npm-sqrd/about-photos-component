@@ -10,10 +10,6 @@ http.createServer((req, res) => {
     const htmlStream = fs.createReadStream(path.join(__dirname, '../client/dist/index.html'), 'utf8');
     res.writeHead(200, { 'Content-Type': 'text/html' });
     htmlStream.pipe(res);
-  } else if (req.url.match('.css')) {
-    const cssStream = fs.createReadStream(path.join(__dirname, '../client/dist/styles.css'), 'utf8');
-    res.writeHead(200, { 'Content-Type': 'text/css' });
-    cssStream.pipe(res);
   } else if (req.url.match('.js')) {
     const jsStream = fs.createReadStream(path.join(__dirname, '../client/dist/bundle.js'), 'utf8');
     res.writeHead(200, { 'Content-Type': 'text/javascript' });
