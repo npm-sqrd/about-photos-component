@@ -2,8 +2,8 @@ node_modules/
 
 .env
 sampleDatas
-client/dist/bundle.js
-client/dist/bundle-prod.js
+client/dist/about-bundle.js
+client/dist/about-bundle-server.js
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
