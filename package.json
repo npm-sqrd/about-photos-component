@@ -6,12 +6,10 @@
   "scripts": {
     "start": "nodemon server/server.js",
     "test": "jest",
-    "dev": "webpack -d --watch",
+    "build": "webpack -d --watch",
     "server": "nodemon server/server.js",
     "mongo-seed-data": "node createJSONFile.js && mongoimport --db restaurant --collection abouts --file sampleDatas/data.json",
-    "postgres-seed-data": "node createCSVFile.js && psql postgres < db/schema.sql",
-    "build-prod": "./node_modules/.bin/webpack --config ./webpack.production.config.js",
-    "build": "webpack -p"
+    "postgres-seed-data": "node createCSVFile.js && psql postgres < db/schema.sql"
   },
   "repository": {
     "type": "git",
@@ -60,6 +58,6 @@
     "sinon": "^4.4.2",
     "style-loader": "^0.20.3",
     "supertest": "^3.0.0",
-    "webpack": "^3.10.0"
+    "webpack": "^3.11.0"
   }
 }

@@ -1,29 +1,52 @@
-var webpack = require('webpack');
-var path = require('path');
+const webpack = require('webpack');
+const path = require('path');
 
-var BUILD_DIR = path.resolve(__dirname, 'client/dist');
-var APP_DIR = path.resolve(__dirname, 'client/src');
-
-var config = {
-  entry: './client/src/productionView.js',
+const client = {
+  context: path.resolve(__dirname, 'client'),
+  entry: path.resolve(__dirname, './client/src/index.jsx'),
   output: {
-    path: BUILD_DIR,
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, 'client/dist'),
+    filename: 'about-bundle.js',
   },
-  module : {
-    loaders : [
+  module: {
+    loaders: [
       {
-        test : /\.jsx?$/,
-        include : APP_DIR,
-        loader : 'babel-loader',
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
       },
       {
-          test:/\.css$/,
-          use:['style-loader','css-loader']
-      }      
-    ]
+        test: /\.css$/,
+        loader: ['style-loader', 'css-loader'],
+      },
+    ],
   },
-}
+};
 
+const server = {
+  context: path.resolve(__dirname, 'client'),
+  entry: path.resolve(__dirname, 'client/src/productionView.js'),
+  target: 'node',
+  output: {
+    path: path.resolve(__dirname, 'client/dist'),
+    filename: 'about-bundle-server.js',
+    libraryTarget: 'commonjs-module',
+  },
+  module: {
+    loaders: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+      },
+      {
+        test: /\.css$/,
+        loader: 'css-loader',
+      },
+    ],
+  },
+};
 
-module.exports = config;
+module.exports = [
+  client, server,
+];

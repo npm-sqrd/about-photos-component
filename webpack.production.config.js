@@ -1,29 +1,46 @@
-const webpack = require('webpack');
-const path = require('path');
-const Dotenv = require('dotenv-webpack');
+// const webpack = require('webpack');
+// const path = require('path');
+// const Dotenv = require('dotenv-webpack');
 
-var BUILD_DIR = path.resolve(__dirname, 'client/dist');
-var APP_DIR = path.resolve(__dirname, 'client/src');
+// const common = {
+//   context: path.resolve(__dirname, 'client'),
+//   module: {
+//     loaders: [
+//       {
+//         test: /\.jsx?$/,
+//         exclude: /node_modules/,
+//         loader: 'babel-loader',
+//       },
+//       {
+//         test: /\.css$/,
+//         use: ['style-loader', 'css-loader'],
+//       },
+//     ],
+//   },
+//   plugins: [
+//     new Dotenv(),
+//   ],
+// };
 
-var config = {
-  entry: './client/src/productionView.js',
-  output: {
-    path: BUILD_DIR,
-    filename: 'bundle-prod.js'
-  },
-  module : {
-    loaders : [
-      {
-        test : /\.jsx?/,
-        include : APP_DIR,
-        loader : 'babel-loader',
-      }
-    ]
-  },
-  plugins: [
-    new Dotenv()
-  ],
-}
+// const client = {
+//   entry: path.resolve(__dirname, './client/src/index.jsx'),
+//   output: {
+//     path: path.resolve(__dirname, 'client/dist'),
+//     filename: 'about-prod-bundle.js',
+//   },
+// };
 
+// const server = {
+//   entry: path.resolve(__dirname, 'client/src/productionView.js'),
+//   target: 'node',
+//   output: {
+//     path: path.resolve(__dirname, 'client/dist'),
+//     filename: 'server-about-prod-bundle.js',
+//     libraryTarget: 'commonjs-module',
+//   },
+// };
 
-module.exports = config;
+// module.exports = [
+//   Object.assign({}, common, client),
+//   Object.assign({}, common, server),
+// ];
