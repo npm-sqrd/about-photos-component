@@ -1,12 +1,13 @@
 const $ = require('jquery');
 
-const BASE_URL = process.env.BASE_URL ? process.env.BASE_URL : '';
+const BASE_URL = process.env.BASE_URL || '';
 
 const get = (name, cb) => {
   $.ajax({
-    url: `/restaurants/${name}`,
+    url: `${BASE_URL}/restaurants/summary/${name}`,
     method: 'GET',
     success: (data) => {
+      console.log('ajax data', data);
       cb(null, data);
     },
   });

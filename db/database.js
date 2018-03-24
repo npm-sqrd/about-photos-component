@@ -31,7 +31,8 @@ const findRestaurant = (obj, cb) => {
     if (error) {
       cb(error, null);
     } else if (data !== null) {
-      cb(null, data);
+      const parse = JSON.parse(data);
+      cb(null, parse);
     } else {
       About.find(obj).lean().exec((err, about) => {
         if (err) {
